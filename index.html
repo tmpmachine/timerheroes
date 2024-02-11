@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+  <title>Timer Heroes</title>
+
+  <!-- mobile meta tags-->
+  <meta name="viewport" content="width=device-width"/>
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  
+  <link href="css/style.css" rel="stylesheet"/>
+  <!--<link href="css/transform/widgets.css" rel="stylesheet"/>-->
+  <link href="css/widgets.css" rel="stylesheet"/>
+  
+  <!-- pwa manifest -->
+  <link rel="manifest" href="manifest.json"/>
+  
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  
+  <style>
+    .material-symbols-outlined {
+      font-variation-settings:
+      'FILL' 0,
+      'wght' 400,
+      'GRAD' 0,
+      'opsz' 48
+    }
+    .icon-mate {
+      font-family: 'Material Symbols Outlined';
+      font-weight: normal;
+      font-style: normal;
+      font-size: 16px;  /* Preferred icon size */
+      display: inline-block;
+      line-height: 1;
+      text-transform: none;
+      letter-spacing: normal;
+      word-wrap: normal;
+      white-space: nowrap;
+      direction: ltr;
+    }
+  </style>
+  
+  <!-- web components -->
+  <link href="css/web-components/modal-v2.css" rel="stylesheet"/>
+  <script src="js/web-components/modal-v2.js"></script>
+  
+</head>
+<body>
+  
+  [ .widget-app
+    
+    [ .d-flex .justify-content-between
+      [btn 'Clear app data' data-onclick="clear-app-data"]
+      [btn 'New egg' data-onclick="add-new-egg"]
+    ]
+    [ .void-full]
+    
+    [
+      [s 'Eggs']
+    ]
+    [ .void-half]
+    
+    <!-- list timer -->
+    [ #container-list-eggs data-onclick="handle-click-list-eggs"]
+  
+  ]
+  
+  
+  <!-- # templates -->
+  
+  <template id="tmp-modal">
+    <modal-v2>
+      [ .modal slot="content"]
+    </modal-v2>
+  </template>
+  
+  <template data-modal-id="ModalTimer">
+    <!-- timer modal content-->
+    [ .widget-modal-timer .ov-auto .pos-relative
+      
+      <!-- # task modal overlay background -->
+      [ .overlay-bg-default .overlay-bg-task]
+      
+      [ {p:1rem} .pos-relative
+
+        [ .modal-header .justify-content-end .d-flex
+          [
+            [btn 'close' .icon-mate .toggler .btn-glass]
+          ]
+        ]
+        [ .void-full]
+        
+        <!-- modal: placeholder image -->
+        [ .obsoletes
+          [ .container-img
+            [ .bg-egg]
+          ]
+          [ .void-full]
+        ]
+        
+        <!-- modal: form -->
+        [form
+          [in type="hidden" name="eggId"]
+          [ .d-flex .flex-column
+            Name 
+            [in name="eggName" .autofocus]
+          ]
+          [ .void-full]
+          
+          [ .d-flex .justify-content-end
+            [btn 'Update' type="submit"]
+          ]
+        ]
+
+      ]
+      
+    ]
+    
+  </template>
+  <template id="tmp-item-egg">
+    <!-- tmp-item-egg -->
+    [ .widget-timer-card data-kind="item" data-role="timer-card"
+      
+      [ .inner .d-flex .gap-half .p-half
+      
+        [ .flex-1
+          [ .gap-full .d-flex .justify-content-between
+            [s data-slot="title"]
+            [ .d-flex .flex-column .gap-quarter
+            
+              <!-- widget progress bar -->
+              [ .widget-progress-bar .sub-widget
+                [ .progress-fill-container .inner
+                  [ .progress-fill]
+                ]
+                [s .progress-label 'N/A']
+              ]
+              
+              <!-- staus label -->
+              [small
+                [s data-slot="timeLeftStr"]
+                [s data-slot="statusLabel"]
+              ]
+              
+            ]
+          ]
+        ]
+        [ .d-flex .gap-half
+          [btn 'Hatch' data-role="hatch"]
+          [btn data-role="delete"
+            [s .icon-mate 'delete']
+          ]
+          [btn 'Edit' data-role="edit" .obsoletes]
+        ]
+      
+      ]
+      
+    ]
+  </template>
+  
+  <script src="script-loader.js"></script>
+  <script src="index.js"></script>
+  
+</body>
+</html>

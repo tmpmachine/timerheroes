@@ -1,0 +1,18 @@
+.flex-column { flex-direction: column; }
+.gap-quarter { gap: 0.25rem; }
+.flex-1 { flex: 1; }
+.d-flex { display: flex; }
+.justify-content-end { justify-content: flex-end; }
+.gap-full { gap: 1rem; }
+.gap-half { gap: 0.5rem; }
+.p-half { padding: 0.5rem; }
+.p-full { padding: 1rem; }
+.d-flex { display: flex; }
+.justify-content-between { justify-content: space-between; }
+
+.obsoletes{display:none!important;height:0!important;width:0!important;overflow:hidden!important;visibility:hidden!important;position:absolute!important}
+
+.void-tenth,.void-quarter,.void-half,.void-full{display:flex}
+.void-tenth{margin-bottom:0.1rem}.void-quarter{margin-bottom:0.25rem}.void-half{margin-bottom:0.5rem}.void-full{margin-bottom:1rem}
+
+body{font-family:sans-serif}
